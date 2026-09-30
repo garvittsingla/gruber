@@ -50,6 +50,11 @@ export class Tokenizer {
       return;
     }
 
+    if (this.peek() === "---") {
+      this.consumeNewSlide();
+      return;
+    }
+
     this.consumeText();
   }
 
@@ -127,6 +132,13 @@ export class Tokenizer {
     }
     
     this.push(new Token(TokenType.CODE, text));
+  }
+
+  consumeNewSlide() {
+    this.advance();
+    this.advance();
+    this.advance();
+    this.push(new Token(TokenType.NEW_SLIDE, ""));
   }
 
   push(token) {

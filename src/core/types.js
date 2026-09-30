@@ -12,6 +12,7 @@ export const TokenType = {
   ITALIC_START: 'italic_start', 
   ITALIC_END: 'italic_end',
   BLOCKQUOTE: 'blockquote',
+  NEW_SLIDE: 'new_slide',
 }
 
 export const HeadingMap = {
@@ -33,3 +34,4 @@ export class Token{
     return `Token(${this.type}, ${this.value})`;
   }
 }
+

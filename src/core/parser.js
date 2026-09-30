@@ -8,7 +8,7 @@ export class Parser extends Tokenizer {
   
   parse(markdown) {
     this.tokenize(markdown);
-    
+      
   }
   
   
