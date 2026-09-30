@@ -1,11 +1,5 @@
-import { TokenType } from "./core/types.js";
-import { Tokenizer } from "./core/lexer.js";
+import { Parser } from "./core/parser.js";
 
 
-const tokenizer = new Tokenizer();
-
-editor = document.getElementById('editor');
-editor.addEventListener('input', () => {
-  const markdown = editor.value;
-  console.log(tokenizer.tokenize(markdown));
-});
+const parser = new Parser();
+parser.parse("hey my name is garvit");

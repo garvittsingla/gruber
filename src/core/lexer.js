@@ -20,7 +20,7 @@ export class Tokenizer {
     while (!this.isAtEnd()) {
       this.scanBlock();
     }
-    
+    console.log(this.tokens);
     return this.tokens;
   }
 
