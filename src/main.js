@@ -10,6 +10,7 @@ const previousSlideButton = document.getElementById("prevslide");
 const nextSlideButton = document.getElementById("nextslide");
 const singleSlideButton = document.querySelector(".setsingleslideview");
 const multiSlideButton = document.querySelector(".setmultislideview");
+const editorToolbar = document.querySelector(".editor-toolbar");
 
 let singleSlideView = true;
 let currentSlideIndex = 0;
@@ -23,6 +24,24 @@ document.addEventListener("DOMContentLoaded", () => {
   parser = new Parser();
   renderer = new Renderer();
   render();
+});
+
+editorToolbar.addEventListener("click", event => {
+  const button = event.target.closest("[data-insert]");
+  if (!button) return;
+
+  const insertions = {
+    slide: "\n\n---\n\n# New Slide\n",
+    heading: "# Heading",
+    code: "```javascript\n// Your code here\n```"
+  };
+  const insertion = insertions[button.dataset.insert];
+  const start = editor.selectionStart;
+  const end = editor.selectionEnd;
+
+  editor.focus();
+  editor.setRangeText(insertion, start, end, "end");
+  editor.dispatchEvent(new Event("input", { bubbles: true }));
 });
 
 function updateSlideNumbers() {
@@ -96,7 +115,12 @@ function loadFromLocalStorage() {
   if (localStorage.getItem("markdown")) {
     editor.value = localStorage.getItem("markdown");
     render();
+  } else {
+    editor.value = defaulttemplate;
+    render();
   }
 }
 
 window.addEventListener("load", loadFromLocalStorage);
+
+let defaulttemplate = ``
