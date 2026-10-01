@@ -11,7 +11,17 @@
 <body>
 	<nav></nav>
 	<main>
-		<textarea id="editor"></textarea>
+		<section id="editorpane">
+			<div class="editor-header">
+				<div class="editor-title">Editor</div>
+				<span class="editor-language">Markdown</span>
+			</div>
+			<textarea id="editor" spellcheck="false"></textarea>
+			<div class="editor-footer">
+				<span>Markdown source</span>
+				<span>Gruber</span>
+			</div>
+		</section>
 		<div id="display">
             <div class="displayutility fira-code">
                 <div id="slidenumbercontainer"> Slide number : <span class="slidenumber">1</span></div>

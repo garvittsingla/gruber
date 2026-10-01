@@ -45,6 +45,15 @@ function render() {
     display.innerHTML = renderer.renderWhole(parsed);
     display.classList.remove("singleSlideView");
     display.classList.add("multipleSlideView");
+    display.querySelectorAll(".decks > .slide").forEach((slide, index) => {
+      slide.addEventListener("click", () => {
+        currentSlideIndex = index;
+        singleSlideView = true;
+        singleSlideButton.classList.add("active");
+        multiSlideButton.classList.remove("active");
+        render();
+      });
+    });
   }
   updateSlideNumbers();
 }
@@ -81,5 +90,4 @@ multiSlideButton.addEventListener("click", () => {
   singleSlideButton.classList.remove("active");
   render();
 });
-
 
