@@ -1,17 +1,22 @@
-html,body{
-    margin:0;
+* {
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
 nav{
     width: 100%;
     height: 65px;
-    background-color: black;
+    background-color: blue;
 }
 main{
     width: 100vw;
-    height: 100vh;
-    background-color: red;
+    height: calc(100% - 65px);
     display: flex;
 }
 #editor{
@@ -20,6 +25,41 @@ main{
     resize: none;
     outline: none;
 }
+#display{
+    width: 50%;
+    height: 100%;
+}
+.displayutility{
+    width: 100%;
+    height: 40px;
+    background-color: red;
+}
+#displayarea{
+    width: 100%;
+    height: calc(100% - 40px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #272727;
+}
+.decks{
+    background-color: #1D2021;
+    width: 96%;
+    height: 93%;
+    border-radius: 10px;
+    padding: 10px;
+}
 .slide{
     background-color: green ;
+}
+.singleSlideView{
+    flex-flow: column;
+}
+.multipleSlideView{
+    flex-flow: row;
+}
+.activeslide{
+    width: 100%;
+    height: 100%;
+    background-color: red;
 }

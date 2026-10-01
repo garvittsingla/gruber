@@ -1,14 +1,18 @@
 export class Renderer {
-  render(ast) {
-    let document = '<decks>';
+  renderWhole(ast) {
+    let document = '<div class="decks">';
 
     for (const slide of ast.slides) {
       document += this.renderSlide(slide);
     }
 
-    document += '</decks>';
+    document += '</div>';
 
     return document;
+  }
+
+  renderSingleSlide(slide) {
+    return this.renderSlide(slide);
   }
 
   renderSlide(slide) {
@@ -65,4 +69,5 @@ export class Renderer {
       .replaceAll('"', '&quot;')
       .replaceAll("'", '&#039;');
   }
+
 }
