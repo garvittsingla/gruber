@@ -6,6 +6,11 @@ const editor = document.getElementById("editor");
 const display = document.getElementById("displayarea");
 const decks = document.getElementById("decks");
 
+let totalslidehtml = document.getElementsByClassName("totalnumber");  
+let slidenumberhtml = document.getElementsByClassName("slidenumber");
+
+
+
 
 let singleSlideView = false;
 let currentSlideIndex = 0;
@@ -21,10 +26,17 @@ document.addEventListener("DOMContentLoaded", () => {
   render();
 });
 
-function render(){
+function updateSlideNumbers() {
+  totalslidehtml[0].textContent = parser.parse(markdown).slides.length;
+  slidenumberhtml[0].textContent = currentSlideIndex + 1;
+}
+
+function render() {
+  markdown = editor.value;
   const parsed = parser.parse(markdown);
   const rendered = singleSlideView ? renderer.renderSingleSlide(parsed.slides[currentSlideIndex]) : renderer.renderWhole(parsed);
   display.innerHTML = rendered;
+  updateSlideNumbers();
 }
 
 editor.addEventListener("input", () => {

@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Gruber</title>
-	<link rel="icon" href="assets/favicon.ico">
+	<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📬</text></svg>">
 	<link rel="stylesheet" href="style.css">
 	<script type="module" src="main.js"></script>
 </head>
@@ -13,8 +13,17 @@
 	<main>
 		<textarea id="editor"></textarea>
 		<div id="display">
-            <div class="displayutility">
-                
+            <div class="displayutility fira-code">
+                <div id="slidenumbercontainer"> Slide number : <span class="slidenumber">1</span></div>
+                <div id="slidenumbercontoller">
+                    <button id="prevslide">&#9664</button>
+                    <span><span class="slidenumber">1</span> / <span class="totalnumber">1</span></span>
+                    <button id="nextslide">&#9654</button>
+                </div>
+                <div class="modebuttoncontainer">
+                    <button class="modebutton setsingleslideview active">single</button>
+                    <button class="modebutton setmultislideview">multi</button>
+                </div>
             </div>
 		    <div id="displayarea"></div>
 		</div>
