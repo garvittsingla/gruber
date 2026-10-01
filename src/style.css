@@ -109,7 +109,7 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #272727;
+    background-color: #1D2021;
 }
 .decks{
     background-color: #1D2021;
@@ -119,13 +119,164 @@ main{
     padding: 10px;
 }
 .slide{
-    background-color: green ;
+    background-color: #282828;
+    color: #EBDBB2;
+    border-radius: 8px;
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.6;
+}
+.slide h1,
+.slide h2,
+.slide h3,
+.slide h4,
+.slide h5,
+.slide h6 {
+    line-height: 1.2;
+    margin-bottom: 0.5em;
+}
+.slide h1 {
+    color: #EBDBB2;
+    font-size: 2em;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+.slide h2 {
+    color: #FABD2F;
+    font-size: 1.65em;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+.slide h3 {
+    color: #A89984;
+    font-size: 1.35em;
+    font-weight: 600;
+}
+.slide h4 {
+    color: #83A598;
+    font-size: 1.15em;
+}
+.slide h5 {
+    color: #D3869B;
+    font-size: 1.05em;
+}
+.slide h6 {
+    color: #7C6F64;
+    font-size: 0.95em;
+}
+.slide p {
+    margin-bottom: 0.8em;
+    color: #EBDBB2;
+}
+.slide strong {
+    color: #FABD2F;
+    font-weight: 700;
+}
+.slide em {
+    color: #D3869B;
+    font-style: italic;
+}
+.slide blockquote {
+    margin: 1em 0;
+    padding: 8px 14px;
+    border-left: 4px solid #FABD2F;
+    border-radius: 0 6px 6px 0;
+    background: #32302F;
+    color: #A89984;
+    font-style: italic;
+}
+.slide pre {
+    margin: 0.8em 0;
+    padding: 12px 14px;
+    overflow-x: auto;
+    border: 1px solid #3C3836;
+    border-radius: 8px;
+    background: #18191A;
+    font: 0.9em/1.5 "Fira Code", monospace;
+}
+.slide code {
+    padding: 2px 5px;
+    border-radius: 4px;
+    background: #32302F;
+    color: #FABD2F;
+    font: 0.9em "Fira Code", monospace;
+}
+.slide pre code {
+    padding: 0;
+    background: transparent;
+    color: #EBDBB2;
 }
 .singleSlideView{
     flex-flow: column;
 }
+.singleSlideView > .slide {
+    width: 96%;
+    height: 93%;
+}
 .multipleSlideView{
     flex-flow: row;
+}
+#displayarea.multipleSlideView {
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: auto;
+    padding: 20px;
+}
+.multipleSlideView .decks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    counter-reset: slide;
+}
+.multipleSlideView .slide {
+    position: relative;
+    flex: 0 0 calc((100% - 16px) / 2);
+    aspect-ratio: 16 / 9;
+    height: auto;
+    min-width: 0;
+    overflow: auto;
+    padding: 34px 14px 14px;
+    border: 1px solid #504945;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+    counter-increment: slide;
+    transition: border-color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+}
+.multipleSlideView .slide::before {
+    content: "#" counter(slide);
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    padding: 2px 6px;
+    border: 1px solid #504945;
+    border-radius: 4px;
+    background: #32302F;
+    color: #FABD2F;
+    font: 700 10px "Fira Code", monospace;
+}
+.multipleSlideView .slide:hover {
+    transform: translateY(-2px);
+    border-color: #FABD2F;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+.multipleSlideView .slide h1 { font-size: 1.5em; }
+.multipleSlideView .slide h2 { font-size: 1.3em; }
+.multipleSlideView .slide h3 { font-size: 1.15em; }
+.multipleSlideView .slide h4,
+.multipleSlideView .slide h5,
+.multipleSlideView .slide h6 { font-size: 1em; }
+.multipleSlideView .slide p,
+.multipleSlideView .slide blockquote,
+.multipleSlideView .slide pre {
+    font-size: 0.85em;
+}
+@media (max-width: 560px) {
+    .multipleSlideView .slide {
+        flex-basis: 100%;
+    }
 }
 .activeslide{
     width: 100%;

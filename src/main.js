@@ -4,13 +4,12 @@ import { Renderer } from "./core/renderer.js";
 
 const editor = document.getElementById("editor");
 const display = document.getElementById("displayarea");
-const decks = document.getElementById("decks");
-
-let totalslidehtml = document.getElementsByClassName("totalnumber");  
-let slidenumberhtml = document.getElementsByClassName("slidenumber");
-
-
-
+const totalSlideHtml = document.querySelector(".totalnumber");
+const slideNumberHtml = document.querySelectorAll(".slidenumber");
+const previousSlideButton = document.getElementById("prevslide");
+const nextSlideButton = document.getElementById("nextslide");
+const singleSlideButton = document.querySelector(".setsingleslideview");
+const multiSlideButton = document.querySelector(".setmultislideview");
 
 let singleSlideView = true;
 let currentSlideIndex = 0;
@@ -27,19 +26,25 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function updateSlideNumbers() {
-  totalslidehtml[0].textContent = parser.parse(markdown).slides.length;
-  slidenumberhtml[0].textContent = currentSlideIndex + 1;
+  const slideCount = parser.parse(markdown).slides.length;
+  totalSlideHtml.textContent = slideCount;
+  slideNumberHtml.forEach(number => number.textContent = currentSlideIndex + 1);
+  previousSlideButton.disabled = currentSlideIndex === 0;
+  nextSlideButton.disabled = currentSlideIndex >= slideCount - 1;
 }
 
 function render() {
   markdown = editor.value;
   const parsed = parser.parse(markdown);
+  currentSlideIndex = Math.min(currentSlideIndex, parsed.slides.length - 1);
   if (singleSlideView) {
     display.innerHTML = renderer.renderSingleSlide(parsed.slides[currentSlideIndex]);
-    decks.classList.add("single-slide-view");
+    display.classList.add("singleSlideView");
+    display.classList.remove("multipleSlideView");
   } else {
     display.innerHTML = renderer.renderWhole(parsed);
-    decks.classList.remove("multi-slide-view");
+    display.classList.remove("singleSlideView");
+    display.classList.add("multipleSlideView");
   }
   updateSlideNumbers();
 }
@@ -48,6 +53,33 @@ editor.addEventListener("input", () => {
   render();
 });
 
+previousSlideButton.addEventListener("click", () => {
+  if (currentSlideIndex > 0) {
+    currentSlideIndex--;
+    render();
+  }
+});
 
+nextSlideButton.addEventListener("click", () => {
+  const slideCount = parser.parse(editor.value).slides.length;
+  if (currentSlideIndex < slideCount - 1) {
+    currentSlideIndex++;
+    render();
+  }
+});
+
+singleSlideButton.addEventListener("click", () => {
+  singleSlideView = true;
+  singleSlideButton.classList.add("active");
+  multiSlideButton.classList.remove("active");
+  render();
+});
+
+multiSlideButton.addEventListener("click", () => {
+  singleSlideView = false;
+  multiSlideButton.classList.add("active");
+  singleSlideButton.classList.remove("active");
+  render();
+});
 
 
