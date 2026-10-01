@@ -56,15 +56,15 @@
   }
   export class Slide {
     constructor() {
-      this.content = [];
+      this.children = [];
     }
     
     addContent(token) {
-      this.content.push(token);
+      this.children.push(token);
     }
   
     getContent() {
-      return this.content;
+      return this.children;
     }
   }
 
