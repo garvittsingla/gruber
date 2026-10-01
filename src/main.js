@@ -12,7 +12,7 @@ let slidenumberhtml = document.getElementsByClassName("slidenumber");
 
 
 
-let singleSlideView = false;
+let singleSlideView = true;
 let currentSlideIndex = 0;
 
 let markdown;
@@ -34,8 +34,13 @@ function updateSlideNumbers() {
 function render() {
   markdown = editor.value;
   const parsed = parser.parse(markdown);
-  const rendered = singleSlideView ? renderer.renderSingleSlide(parsed.slides[currentSlideIndex]) : renderer.renderWhole(parsed);
-  display.innerHTML = rendered;
+  if (singleSlideView) {
+    display.innerHTML = renderer.renderSingleSlide(parsed.slides[currentSlideIndex]);
+    decks.classList.add("single-slide-view");
+  } else {
+    display.innerHTML = renderer.renderWhole(parsed);
+    decks.classList.remove("multi-slide-view");
+  }
   updateSlideNumbers();
 }
 
