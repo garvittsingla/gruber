@@ -91,7 +91,7 @@ main{
     order: 1;
     flex-shrink: 0;
     width: 100%;
-    height: 52px;
+    height: 42px;
     display: flex;
     padding: 0 16px;
     justify-content: space-between;
@@ -270,6 +270,8 @@ main{
 .singleSlideView > .slide {
     width: 96%;
     height: 93%;
+    min-height: 0;
+    overflow: auto;
 }
 .multipleSlideView{
     flex-flow: row;

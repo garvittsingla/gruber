@@ -14,7 +14,7 @@ const multiSlideButton = document.querySelector(".setmultislideview");
 let singleSlideView = true;
 let currentSlideIndex = 0;
 
-let markdown;
+let markdown ;
 let parser;
 let renderer;
 
@@ -59,6 +59,7 @@ function render() {
 }
 
 editor.addEventListener("input", () => {
+  localStorage.setItem("markdown", editor.value);
   render();
 });
 
@@ -91,3 +92,11 @@ multiSlideButton.addEventListener("click", () => {
   render();
 });
 
+function loadFromLocalStorage() {
+  if (localStorage.getItem("markdown")) {
+    editor.value = localStorage.getItem("markdown");
+    render();
+  }
+}
+
+window.addEventListener("load", loadFromLocalStorage);
