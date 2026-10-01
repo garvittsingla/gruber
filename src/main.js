@@ -1,5 +1,10 @@
 import { Parser } from "./core/parser.js";
 
 
+const editor = document.getElementById("editor");
 const parser = new Parser();
-parser.parse("hey my name is garvit");
+editor.addEventListener("input", () => {
+  const markdown = editor.value;
+  const parsed = parser.parse(markdown);
+  console.log(parsed)
+});

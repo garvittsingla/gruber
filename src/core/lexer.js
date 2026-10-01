@@ -50,7 +50,7 @@ export class Tokenizer {
       return;
     }
 
-    if (this.peek() === "---") {
+    if (this.peek() === "-" && this.markdown.substring(this.cursor, this.cursor + 3) === "---") {
       this.consumeNewSlide();
       return;
     }
