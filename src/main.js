@@ -123,4 +123,78 @@ function loadFromLocalStorage() {
 
 window.addEventListener("load", loadFromLocalStorage);
 
-let defaulttemplate = ``
+let defaulttemplate = `# Welcome to Gruber
+
+A realtime Markdown → Presentation generator.
+
+Write Markdown on the left.
+Watch your presentation appear on the right.
+
+---
+
+## How Gruber Works
+
+Gruber turns simple Markdown into presentation slides.
+
+Each slide is separated using:
+
+---
+
+The editor updates the presentation **in real time** as you type.
+
+---
+
+## Creating Slides
+
+Use three hyphens to create a new slide.
+
+---
+
+Everything after the separator belongs to the next slide.
+
+You can create as many slides as you want.
+
+---
+
+## Headings
+
+Gruber supports six levels of headings.
+
+# Heading 1
+
+## Heading 2
+
+### Heading 3
+
+#### Heading 4
+
+##### Heading 5
+
+###### Heading 6
+
+---
+
+## Text Formatting
+
+You can make text **bold**.
+
+You can make text *italic*.
+
+You can also combine normal text with **bold** and *italic* text.
+
+---
+
+## Blockquotes
+
+Use the greater-than symbol to create a blockquote.
+
+> Markdown is a language designed to be readable.
+
+Blockquotes are useful for highlighting important ideas or quotes.
+
+---
+
+## Code Blocks
+
+Use three backticks to create a code block.
+`
