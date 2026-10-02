@@ -55,6 +55,7 @@ function updateSlideNumbers() {
 function render() {
   markdown = editor.value;
   const parsed = parser.parse(markdown);
+  console.log(parsed);
   currentSlideIndex = Math.min(currentSlideIndex, parsed.slides.length - 1);
   if (singleSlideView) {
     display.innerHTML = renderer.renderSingleSlide(parsed.slides[currentSlideIndex]);

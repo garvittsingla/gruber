@@ -13,6 +13,7 @@
     ITALIC_END: 'italic_end',
     BLOCKQUOTE: 'blockquote',
     NEW_SLIDE: 'new_slide',
+    IMAGE: 'image',
   }
   
   export const HeadingMap = {
@@ -135,5 +136,16 @@ export class Paragraph {
   constructor(children) {
     this.type = 'paragraph';
     this.children = children;
+  }
+}
+export class Image{
+  type
+  src
+  alt
+  
+  constructor(src, alt) {
+    this.type = 'image';
+    this.src = src;
+    this.alt = alt;
   }
 }

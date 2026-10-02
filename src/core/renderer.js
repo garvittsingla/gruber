@@ -50,8 +50,13 @@ export class Renderer {
       case 'code':
         return `<pre><code>${this.renderChildren(node.content)}</code></pre>`;
 
+      case 'image':
+        console.log(node);
+        return `<img class="linkimage" src="${node.src}" alt="${node.alt}" />`;
+
       default:
-        throw new Error(`Unknown node type: ${node.type}`);
+        console.log(node);
+        return '';
     }
   }
 

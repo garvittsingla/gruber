@@ -1,5 +1,5 @@
 import { Tokenizer } from "./lexer.js";
-import { TokenType, Document, Slide, Heading, Bold, Italic,Code,Text,BlockQuote,Paragraph } from "./types.js";
+import { TokenType, Document, Slide, Heading, Bold, Italic,Code,Text,BlockQuote,Paragraph,Image } from "./types.js";
 
 export class Parser extends Tokenizer {
   constructor() {
@@ -33,6 +33,10 @@ export class Parser extends Tokenizer {
         } else if (token.type === "blockquote") {
           const inlineChildren = this.parseInline(token.value);
           currentSlide.addContent(new BlockQuote(inlineChildren));
+        } else if (token.type === "image") {
+          let src = token.value.src;
+          let alt = token.value.alt;
+          currentSlide.addContent(new Image(src, alt));
         }
       }
     }

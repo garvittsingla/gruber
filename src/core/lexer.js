@@ -55,7 +55,36 @@ export class Tokenizer {
       return;
     }
 
+    if (this.peek() === "!") {
+      this.consumeImage();
+      return;
+    }
+
     this.consumeText();
+  }
+
+  /*
+    Consumes an image from the markdown.
+    @private
+  */
+  consumeImage() {
+    this.advance(); //!
+    this.advance(); //[
+    let src = "";
+    let alt = "";
+    while (!this.isAtEnd() && this.peek() !== "]") {
+      alt += this.peek();
+      this.advance();
+    }
+    this.advance(); //]
+    if (this.peek() === "(") this.advance(); // (
+    while (!this.isAtEnd() && this.peek() !== ")") {
+      src += this.peek();
+      this.advance();
+    }
+    if (this.peek() === ")") this.advance();
+    if (this.peek() === "\n") this.advance();
+    this.push(new Token("image", { src, alt }));
   }
 
   /*
