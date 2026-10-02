@@ -138,17 +138,15 @@ just look at the wireframe i generated from LLM with this as raw wireframe
 and it created it
 ![](https://github.com/garvittsingla/gruber/raw/main/wireframes/wireframe.png)
 ---
-# New slide
-
----
 
 ## How Gruber Works
 
 Gruber turns simple Markdown into presentation slides.
 
-Each slide is separated using:
-
+Each slide is separated using: 
+```
 ---
+```
 
 The editor updates the presentation **in real time** as you type.
 
@@ -207,4 +205,5 @@ Blockquotes are useful for highlighting important ideas or quotes.
 ## Code Blocks
 
 Use three backticks to create a code block.
+
 `
