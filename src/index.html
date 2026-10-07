@@ -9,7 +9,86 @@
 	<script type="module" src="main.js"></script>
 </head>
 <body>
-	<nav></nav>
+	<nav class="top-nav">
+		<!-- Left: Brand Logo & Tagline -->
+		<div class="nav-brand">
+			<a href="#" class="brand-link" title="Gruber Presentation Studio">
+				<span class="brand-icon">M↓</span>
+				<span class="brand-title">gruber</span>
+			</a>
+			<span class="brand-tagline">markdown to slides</span>
+		</div>
+
+		<!-- Center: Roaming Cats & Pets Interactive Stage -->
+		<div class="pets-roaming-area" title="Click a pet or the track to interact!">
+			<canvas id="pets-canvas" class="pets-canvas"></canvas>
+			<div class="pets-controls">
+				<button id="btn-add-pet" class="pet-ctrl-btn" title="Add a roaming pet" type="button">+</button>
+				<button id="btn-remove-pet" class="pet-ctrl-btn" title="Remove a pet" type="button">-</button>
+				<button id="btn-pet-sound" class="pet-ctrl-btn" title="Toggle cute sound effects" type="button">🔊</button>
+			</div>
+		</div>
+
+		<!-- Right: Action Menus & Present Button -->
+		<div class="nav-actions">
+			<!-- Templates Dropdown -->
+			<div class="nav-dropdown-wrapper" id="templates-wrapper">
+				<button id="btn-templates" class="nav-btn" type="button" aria-haspopup="true" aria-expanded="false" title="Choose a presentation template">
+					<span>✨ Templates</span>
+					<span class="nav-caret">▾</span>
+				</button>
+				<div class="nav-dropdown-menu" id="templates-dropdown">
+					<button class="nav-dropdown-item" type="button" data-template="gruber">
+						<span class="item-title">📖 Gruber Intro Deck</span>
+						<span class="item-desc">Guide to Gruber syntax & ideas</span>
+					</button>
+					<button class="nav-dropdown-item" type="button" data-template="minimalist">
+						<span class="item-title">🍃 Minimalist Deck</span>
+						<span class="item-desc">Clean, direct, distraction-free</span>
+					</button>
+					<button class="nav-dropdown-item" type="button" data-template="pitch">
+						<span class="item-title">🚀 Startup Pitch</span>
+						<span class="item-desc">Problem, solution, traction metrics</span>
+					</button>
+					<button class="nav-dropdown-item" type="button" data-template="tech">
+						<span class="item-title">💻 Technical Talk</span>
+						<span class="item-desc">Code architecture & benchmarks</span>
+					</button>
+				</div>
+			</div>
+
+			<!-- Export Dropdown -->
+			<div class="nav-dropdown-wrapper" id="export-wrapper">
+				<button id="btn-export" class="nav-btn" type="button" aria-haspopup="true" aria-expanded="false" title="Export presentation">
+					<span>💾 Export</span>
+					<span class="nav-caret">▾</span>
+				</button>
+				<div class="nav-dropdown-menu" id="export-dropdown">
+					<button class="nav-dropdown-item" type="button" id="export-copy-md">
+						<span class="item-title">📋 Copy Markdown</span>
+						<span class="item-desc">Copy raw text to clipboard</span>
+					</button>
+					<button class="nav-dropdown-item" type="button" id="export-download-md">
+						<span class="item-title">📝 Download .md</span>
+						<span class="item-desc">Save markdown file to disk</span>
+					</button>
+					<button class="nav-dropdown-item" type="button" id="export-print-pdf">
+						<span class="item-title">📄 Print / PDF</span>
+						<span class="item-desc">Browser print or save as PDF</span>
+					</button>
+					<button class="nav-dropdown-item" type="button" id="export-standalone-html">
+						<span class="item-title">🌐 Standalone HTML</span>
+						<span class="item-desc">Self-contained offline presentation</span>
+					</button>
+				</div>
+			</div>
+
+			<!-- Present Button -->
+			<button id="btn-present" class="nav-btn nav-btn-present" type="button" title="Start presentation mode (F5 / Cmd+Enter)">
+				<span>▶ Present</span>
+			</button>
+		</div>
+	</nav>
 	<main>
 		<section id="editorpane">
 			<div class="editor-header">
@@ -43,5 +122,25 @@
 		    <div id="displayarea"></div>
 		</div>
 	</main>
+
+	<!-- Fullscreen Presentation Stage -->
+	<div id="presentation-stage" class="presentation-stage" aria-hidden="true">
+		<div class="presenter-container">
+			<div id="presenter-slide-viewport" class="presenter-slide-viewport"></div>
+			<!-- Floating HUD -->
+			<div class="presenter-hud" id="presenter-hud">
+				<button id="hud-prev" class="hud-btn" type="button" title="Previous slide (← / Left)">◀</button>
+				<div class="hud-slide-indicator">
+					<span id="hud-current">1</span> / <span id="hud-total">1</span>
+				</div>
+				<button id="hud-next" class="hud-btn" type="button" title="Next slide (→ / Right / Space)">▶</button>
+				<div class="hud-timer" id="hud-timer" title="Elapsed presentation time">00:00</div>
+				<button id="hud-exit" class="hud-btn hud-exit-btn" type="button" title="Exit presentation (Esc)">✕ Exit</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Subtle Toast Notification Container -->
+	<div id="toast-container" class="toast-container" aria-live="polite"></div>
 </body>
 </html>
