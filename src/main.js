@@ -577,9 +577,6 @@ function exportStandaloneHtml() {
   showToast("🌐 Downloaded standalone HTML presentation!");
 }
 
-/* ==========================================================================
-   TOAST NOTIFICATION UTILITY
-   ========================================================================== */
 
 function showToast(message, duration = 2500) {
   if (!toastContainer) return;
