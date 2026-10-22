@@ -7,6 +7,7 @@
 	<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕊️</text></svg>">
 	<link rel="stylesheet" href="style.css">
 	<script type="module" src="main.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/piixpal@0.4/piixpal.min.js"></script>
 </head>
 <body>
 	<nav class="top-nav">
@@ -31,6 +32,7 @@
 
 		<!-- Right: Action Menus & Present Button -->
 		<div class="nav-actions">
+		
 			<!-- Templates Dropdown -->
 			<div class="nav-dropdown-wrapper" id="templates-wrapper">
 				<button id="btn-templates" class="nav-btn" type="button" aria-haspopup="true" aria-expanded="false" title="Choose a presentation template">
@@ -91,6 +93,8 @@
 	</nav>
 	<main>
 		<section id="editorpane">
+        <piix-pal pal="bitbug"></piix-pal>
+		
 			<div class="editor-header">
 				<div class="editor-title">Editor</div>
 				<div class="editor-toolbar" role="toolbar" aria-label="Insert Markdown">
